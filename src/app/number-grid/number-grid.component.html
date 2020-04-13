@@ -1,0 +1,33 @@
+
+
+<div class="d-flex margin button-bar">
+<button (click)="generate()" type="button" class="mr-3 p-2 btn btn-lg btn-primary">Generate</button>
+<button data-toggle="modal" data-target="#listNum" type="button" class="mr-3 p-2 btn btn-lg btn-outline-info">Show list</button>
+<h2 class="overflow-auto badge badge-secondary">{{currentNumber}}</h2>
+<button type="button" (click)='reset()' class="btn ml-auto p-2 btn-danger">Reset</button>
+</div>
+<mat-grid-list cols="10" rowHeight="2:1">
+  
+  <mat-grid-tile *ngFor="let item of array(90); index as i;" id="tile-{{i+1}}">{{i+1}}</mat-grid-tile>
+</mat-grid-list>
+
+
+<div class="modal fade" id="listNum" tabindex="-1" role="dialog" aria-labelledby="listNum" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Last Called numbers</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    
+      </div>
+    </div>
+  </div>
+</div>

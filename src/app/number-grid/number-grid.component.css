@@ -1,0 +1,15 @@
+mat-grid-tile {
+    background: lightblue;
+  }
+
+.marked{
+    background: blue;
+}
+
+.button-bar{
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+}
+.currNumberView{
+    
+}
