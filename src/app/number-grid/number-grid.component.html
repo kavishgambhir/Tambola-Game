@@ -1,9 +1,9 @@
 
 
-<div class="d-flex margin button-bar">
+<div class="d-flex margin button-bar align-middle">
 <button (click)="generate()" type="button" class="mr-3 p-2 btn btn-lg btn-primary">Generate</button>
 <button data-toggle="modal" data-target="#listNum" type="button" class="mr-3 p-2 btn btn-lg btn-outline-info">Show list</button>
-<h2 class="overflow-auto badge badge-secondary">{{currentNumber}}</h2>
+<button class="btn  btn-block btn-secondary mr-3 disabled font-weight-bold"> {{currentNumber}}</button>
 <button type="button" (click)='reset()' class="btn ml-auto p-2 btn-danger">Reset</button>
 </div>
 <mat-grid-list cols="10" rowHeight="2:1">
@@ -13,7 +13,7 @@
 
 
 <div class="modal fade" id="listNum" tabindex="-1" role="dialog" aria-labelledby="listNum" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h2 class="modal-title" id="exampleModalLabel">Last Called numbers</h2>
@@ -22,7 +22,9 @@
         </button>
       </div>
       <div class="modal-body">
-        
+        <ul class="list-group">
+  <li class="list-group-item" *ngFor="let number of numberList">{{number}}</li>
+</ul>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

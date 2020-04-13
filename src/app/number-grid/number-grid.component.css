@@ -9,7 +9,8 @@ mat-grid-tile {
 .button-bar{
     margin-bottom: 3rem;
     margin-top: 2rem;
+    text-align: center;
 }
 .currNumberView{
-    
+
 }
