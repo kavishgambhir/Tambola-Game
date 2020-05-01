@@ -1,0 +1,26 @@
+<div class="input-group pt-1 mb-3">
+  <input type="text" class="form-control" placeholder="Player name"  #player_name aria-label="Player name" aria-describedby="button-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-outline-primary" type="button" (click)="addPlayer(player_name.value);player_name.value=''">Add</button>
+  </div>
+</div>
+
+<div class="accordion" id="accordionExample">
+  <div class="card" *ngFor="let player of players;let i = index">
+    <div class="card-header  d-flex justify-content-between">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target] ="'#collapseOne'+i" aria-expanded="true" aria-controls="collapseOne">
+          {{player}}
+        </button>
+      </h2>
+      <button type="button" class="btn btn-outline-danger btn-sm" (click)="deletePlayer(i)">delete</button>
+    </div>
+
+    <div id="collapseOne{{i}}"  class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        Here will come different tickets for {{player}}
+      </div>
+    </div>
+  </div>
+</div>
+
