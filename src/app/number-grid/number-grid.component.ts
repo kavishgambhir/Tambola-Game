@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NumberCallService } from '../services/number-call.service';
 
 @Component({
   selector: 'app-number-grid',
@@ -11,7 +12,8 @@ export class NumberGridComponent implements OnInit {
   numberList:Array<number>=[];
   currentNumber:number;
   synth:SpeechSynthesis;
-  constructor() {
+  constructor(private numberService:NumberCallService) {
+
     for (var i = 1; i <= 90; i++) {
       this.numbersCalled.set(i, false);
     }
@@ -22,6 +24,7 @@ export class NumberGridComponent implements OnInit {
   }
   ngOnInit(): void {
     this.synth=window.speechSynthesis
+
   }
   generate() {
     var nextNumber = Math.floor(Math.random() * 90) + 1;
@@ -33,6 +36,7 @@ export class NumberGridComponent implements OnInit {
       this.numbersCalled.set(nextNumber, true);
       console.log("called = ", nextNumber);
       this.currentNumber=nextNumber;
+      this.numberService.calledNumber=this.currentNumber;
       this.numberList.push(nextNumber);
       this.announceNumber(nextNumber.toString());
       this.numberCount++;
