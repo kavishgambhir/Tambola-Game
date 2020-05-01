@@ -1,6 +1,6 @@
 <p>ticket works!</p>
 <div class="ticketCover container text-center">
-{{ticketId}}
+{{playerName}} - {{ticketId}}
   <div class="row ticket-container" *ngFor="let numArray of ticketGrid">
    <div *ngFor="let num of numArray" class="col-sm item fixwidth">
    {{num!=0?num:''}}

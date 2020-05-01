@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { InjectSetupWrapper } from '@angular/core/testing';
 
 @Component({
@@ -7,14 +7,16 @@ import { InjectSetupWrapper } from '@angular/core/testing';
   styleUrls: ['./ticket.component.css']
 })
 export class TicketComponent implements OnInit {
+  @Input()
   ticketId: number
+  @Input()
+  playerName: string
   numbersMap: Map<number, boolean> = new Map();
   numberList: Array<number> = [];
   ticketGrid: Array<Array<number>>;
   numbersPosition: Map<number, []> = new Map();
 
   constructor() {
-    this.ticketId = 1
     this.ticketGrid = []
     for (var i = 0; i < 3; i++) this.ticketGrid.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
   }
