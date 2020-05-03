@@ -1,1 +1,17 @@
-<p>player works!</p>
+    <div class="card-header  d-flex justify-content-between">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target] ="'#collapseOne'+name" aria-expanded="true" aria-controls="collapseOne">
+          {{name}}
+        </button>
+      </h2>
+      <button type="button" class="btn btn-outline-danger btn-sm" (click)="deletePlayer()">delete</button>
+    </div>
+
+    <div id="collapseOne{{name}}"  class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+       <div *ngFor="let ticket of tickets;let i=index">
+       here are the tickers : {{i}}
+       {{ticket.ticketRef}}
+       </div>
+      </div>
+    </div>

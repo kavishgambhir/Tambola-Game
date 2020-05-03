@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { TicketComponent } from '../ticket/ticket.component';
 
 @Component({
@@ -13,10 +13,14 @@ export class PlayerComponent implements OnInit {
 
   @Input()
   name: string;
-  constructor(name: string) {
-    this.name = name;
+
+  @Output() 
+  deleteEvent = new EventEmitter<null>();
+
+
+  constructor() {
     this.currentTicketId = 1;
-    this.createTicket();
+    this.tickets=[];
   }
 
   createTicket() {
@@ -27,6 +31,13 @@ export class PlayerComponent implements OnInit {
     this.tickets.splice(index, 1);
   }
   ngOnInit(): void {
+    this.createTicket();
+  }
+  ngOnDestroy() {
+    console.log(name,' player component destroyed');
+  }
+  deletePlayer() {
+    this.deleteEvent.emit(null);
   }
 
 }

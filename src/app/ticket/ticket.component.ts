@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { InjectSetupWrapper } from '@angular/core/testing';
+import { Component, OnInit, Input, ElementRef, ViewChild, TemplateRef } from '@angular/core';
 
 @Component({
-  selector: 'app-ticket',
+  selector: '[ticket-host]',
   templateUrl: './ticket.component.html',
   styleUrls: ['./ticket.component.css']
 })
@@ -15,9 +14,10 @@ export class TicketComponent implements OnInit {
   numberList: Array<number> = [];
   ticketGrid: Array<Array<number>>;
   numbersPosition: Map<number, []> = new Map();
-
+  @ViewChild("ticketRef") ticketRef: TemplateRef<any>;
   constructor() {
     this.ticketGrid = []
+    console.log(this.ticketRef);
     for (var i = 0; i < 3; i++) this.ticketGrid.push([0, 0, 0, 0, 0, 0, 0, 0, 0]);
   }
   ngOnDestroy()
@@ -31,9 +31,6 @@ export class TicketComponent implements OnInit {
       while (this.numbersMap.has(currNumber)) currNumber = this.genNumberForColumn(i);
       this.numbersMap.set(currNumber, true);
     }
-    // for (var [m, n] of (this.numbersMap)) {
-    //   console.log(m)
-    // }
     for (var x = 1; x <= 6;) {
       var randomNumber = Math.floor(Math.random() * 90) + 1;
       if (this.numbersMap.has(randomNumber)) continue;
@@ -56,7 +53,6 @@ export class TicketComponent implements OnInit {
   ngOnInit(): void {
     this.createNumbersForTicket();
     this.populateTicket();
-    console.log(this.ticketGrid)
 
   }
   populateTicket() {
@@ -68,7 +64,6 @@ export class TicketComponent implements OnInit {
       row = (row + 1) % 3
     }
 
-    console.log(this.ticketGrid)
 
     for (let i = 0; i < 9; i++) //row wise sort/swap 
     {

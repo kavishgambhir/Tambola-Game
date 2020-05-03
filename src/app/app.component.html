@@ -15,7 +15,8 @@
     </ul>
   </div>
 </nav>
-<div class="container"><router-outlet>
+<div class="container">
+<router-outlet (activate)="onActivate($event)">
 </router-outlet>
 </div>
   <footer>

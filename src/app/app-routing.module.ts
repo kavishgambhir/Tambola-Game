@@ -6,6 +6,11 @@ import { TicketManagerComponent } from './ticket-manager/ticket-manager.componen
 
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: "/number-gen-component",
+    pathMatch: 'full'
+  },
   { path: 'ticket-manager-component', component: TicketManagerComponent },
   { path: 'number-gen-component', component: NumberGridComponent }
 ];

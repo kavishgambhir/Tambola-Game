@@ -1,5 +1,5 @@
-<p>ticket works!</p>
-<div class="ticketCover container text-center">
+<ng-template id="ticketRef" >
+<div  class="ticketCover container text-center">
 {{playerName}} - {{ticketId}}
   <div class="row ticket-container" *ngFor="let numArray of ticketGrid">
    <div *ngFor="let num of numArray" class="col-sm item fixwidth">
@@ -7,3 +7,4 @@
    </div>
    </div>
 </div>
+</ng-template>

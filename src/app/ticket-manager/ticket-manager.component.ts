@@ -1,26 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TicketComponent } from '../ticket/ticket.component'
+import { interval } from 'rxjs';
 
-class Player {
-  tickets: TicketComponent[];
-  currentTicketId: number;
-
-  @Input()
-  name: string;
-  constructor(name: string) {
-    this.name = name;
-    this.currentTicketId = 1;
-    this.createTicket();
-  }
-
-  createTicket() {
-    this.tickets.push(new TicketComponent());
-    this.currentTicketId += 1;
-  }
-  deleteTicket(index: number) {
-    this.tickets.splice(index, 1);
-  }
-}
 
 @Component({
   selector: 'app-ticket-manager',
@@ -34,6 +14,7 @@ export class TicketManagerComponent implements OnInit {
     this.players=[]
   }
 
+  
   addPlayer(name: string) {
     if(name!='')
     this.players.push((name));
