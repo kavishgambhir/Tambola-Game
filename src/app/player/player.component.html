@@ -4,14 +4,14 @@
           {{name}}
         </button>
       </h2>
+      <button type="button" class="btn btn-outline-primary btn-sm" (click)="createTicket()">Add ticket</button>
       <button type="button" class="btn btn-outline-danger btn-sm" (click)="deletePlayer()">delete</button>
     </div>
 
     <div id="collapseOne{{name}}"  class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
        <div *ngFor="let ticket of tickets;let i=index">
-       here are the tickers : {{i}}
-       {{ticket.ticketRef}}
+       <div class="container" ><app-ticket [data]=ticket></app-ticket></div>
        </div>
       </div>
     </div>

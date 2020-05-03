@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { TicketComponent } from '../ticket/ticket.component';
+import { Ticket } from '../models/ticket.model';
 
 @Component({
   selector: 'app-player',
@@ -8,7 +8,7 @@ import { TicketComponent } from '../ticket/ticket.component';
 })
 export class PlayerComponent implements OnInit {
 
-  tickets: TicketComponent[];
+  tickets: Ticket[];
   currentTicketId: number;
 
   @Input()
@@ -24,7 +24,7 @@ export class PlayerComponent implements OnInit {
   }
 
   createTicket() {
-    this.tickets.push(new TicketComponent());
+    this.tickets.push(new Ticket(this.name,this.currentTicketId));
     this.currentTicketId += 1;
   }
   deleteTicket(index: number) {
