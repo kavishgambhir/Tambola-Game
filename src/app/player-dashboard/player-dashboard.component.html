@@ -7,7 +7,7 @@
 
 <div class="accordion" id="accordionExample">
   <div class="card" *ngFor="let player of players;let i = index">
-<app-player (deleteEvent)='deletePlayer(i)' [name]="player"></app-player>
+<app-player (deleteEvent)='deletePlayer(i)' playerIndex={{i}}></app-player>
   </div>
 </div>
 

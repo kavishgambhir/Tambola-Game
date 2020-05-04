@@ -1,5 +1,8 @@
 <div  class="ticketCover container text-center">
-{{data.playerName}} - {{data.ticketId}}
+<div class="row">
+  <div class="col-auto mr-auto"><strong>{{data.playerName}} - {{data.ticketId}}</strong> </div>
+  <div class="col-auto"><button type="button" class="btn close" (click)="deleteTicket()"><span>×</span> </button></div>
+</div>
   <div class="row ticket-container" *ngFor="let numArray of data.ticketGrid">
    <div *ngFor="let num of numArray" class="col-sm item fixwidth">
    {{num!=0?num:''}}

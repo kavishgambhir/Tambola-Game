@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Ticket } from '../models/ticket.model';
-
+import { DataService } from '../services/data.service'
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
@@ -11,31 +11,31 @@ export class PlayerComponent implements OnInit {
   tickets: Ticket[];
   currentTicketId: number;
 
-  @Input()
-  name: string;
+  playerName: string;
 
-  @Output() 
+  @Input()
+  playerIndex: number
+  @Output()
   deleteEvent = new EventEmitter<null>();
 
 
-  constructor() {
-    this.currentTicketId = 1;
-    this.tickets=[];
+  constructor(private data: DataService) {
   }
 
   createTicket() {
-    this.tickets.push(new Ticket(this.name,this.currentTicketId));
-    this.currentTicketId += 1;
+    this.data.addTicket(this.playerIndex);
   }
   deleteTicket(index: number) {
-    this.tickets.splice(index, 1);
+    this.data.deleteTicket(this.playerIndex, index);
+
   }
   ngOnInit(): void {
-    this.createTicket();
+
+    this.playerName = this.data.players[this.playerIndex].playerName;
+    this.currentTicketId = this.data.players[this.playerIndex].currentTicketId;
+    this.tickets = this.data.players[this.playerIndex].tickets;
   }
-  ngOnDestroy() {
-    console.log(name,' player component destroyed');
-  }
+
   deletePlayer() {
     this.deleteEvent.emit(null);
   }

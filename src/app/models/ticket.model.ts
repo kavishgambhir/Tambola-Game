@@ -1,11 +1,11 @@
 export class Ticket {
-    ticketId: number
-    numbersMap: Map<number, boolean> = new Map();
-    numberList: Array<number> = [];
-    ticketGrid: Array<Array<number>>;
-    numbersPosition: Map<number, []> = new Map();
-    playerName: string;
-    constructor(playerName="default",ticketId=0) {
+    readonly ticketId: number
+    readonly numbersMap: Map<number, boolean> = new Map();
+    readonly numberList: Array<number> = [];
+    readonly ticketGrid: Array<Array<number>>;
+    readonly numbersPosition: Map<number, []> = new Map();
+    readonly playerName: string;
+    constructor(playerName,ticketId) {
         this.ticketId = ticketId;
         this.playerName = playerName;
         this.ticketGrid = [];

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild, TemplateRef, Output, EventEmitter } from '@angular/core';
 import { Ticket } from '../models/ticket.model';
 
 @Component({
@@ -8,16 +8,17 @@ import { Ticket } from '../models/ticket.model';
 })
 export class TicketComponent implements OnInit {
   @Input()
-  data:Ticket;
-
+  data: Ticket;
+  @Output()
+  deleteEvent = new EventEmitter<null>();
   constructor() {
-    if(this.data==undefined) this.data=new Ticket();
-
   }
-
 
   ngOnInit(): void {
 
+  }
+  deleteTicket() {
+    this.deleteEvent.emit(null);
   }
 
 }

@@ -1,9 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { NumberCallService } from '../services/number-call.service';
-import { Store } from '@ngrx/store';
-import { AppState } from '../reducers';
-import { generate } from 'rxjs';
-import { GenerateNumber } from '../actions/number-grid.actions';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-number-grid',
@@ -17,15 +13,10 @@ export class NumberGridComponent implements OnInit {
   @Output() numberGenerateEvent: EventEmitter<any> = new EventEmitter();
   @Output() numberResetEvent: EventEmitter<any> = new EventEmitter();
   synth: SpeechSynthesis;
-  constructor(private numberService: NumberCallService, private store: Store<AppState>) {
-    store.select(state => state.numberGrid).subscribe(res => {
-      console.log(res);
-      // console.log(res.numbersCalled)
-      this.numbersCalled = Object.assign(res.numbersCalled);
-      this.numberList = Object.assign([], res.numberList);
-      // this.numberList=res.numberList;
-      this.currentNumber = res.currentNumber;
-    });
+  constructor(private data: DataService) {
+    this.numbersCalled=data.numbersCalled;
+    this.numberList=data.numberList;
+    this.currentNumber=data.currentNumber
   }
   array(n: number): any[] {
     return Array(n);
@@ -48,15 +39,9 @@ export class NumberGridComponent implements OnInit {
       this.numbersCalled.set(nextNumber, true);
       console.log("called = ", nextNumber);
       this.currentNumber = nextNumber;
-      this.numberService.calledNumber = this.currentNumber;
-      // this.numberList = Object.assign([], this.numberList) //why
       this.numberList.push(nextNumber);
       this.announceNumber(nextNumber.toString());
-      this.numberGenerateEvent.emit({
-        currentNumber: this.currentNumber,
-        numbersCalled: this.numbersCalled,
-        numberList: this.numberList,
-      });
+      this.data.updateGridData(this.numbersCalled,this.numberList,this.currentNumber);
     }
     else {
       alert("All numbers called!");
@@ -81,6 +66,7 @@ export class NumberGridComponent implements OnInit {
       var tileId = "tile-" + i;
       document.getElementById(tileId).classList.remove("marked");
     }
-    this.numberResetEvent.emit();
+    this.data.resetGridData();
   }
+  
 }
