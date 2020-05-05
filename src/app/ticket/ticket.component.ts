@@ -16,7 +16,6 @@ export class TicketComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data.numbersMap)
   }
   deleteTicket() {
     this.deleteEvent.emit(null);

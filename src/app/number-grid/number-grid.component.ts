@@ -10,24 +10,29 @@ export class NumberGridComponent implements OnInit {
   numbersCalled: Map<number, boolean>;
   numberList: Array<number> = [];
   currentNumber: number;
+  breakpoint: number;
   @Output() numberGenerateEvent: EventEmitter<any> = new EventEmitter();
   @Output() numberResetEvent: EventEmitter<any> = new EventEmitter();
   synth: SpeechSynthesis;
   constructor(private data: DataService) {
-    this.numbersCalled=data.numbersCalled;
-    this.numberList=data.numberList;
-    this.currentNumber=data.currentNumber
+    this.breakpoint = 10;
+    this.numbersCalled = data.numbersCalled;
+    this.numberList = data.numberList;
+    this.currentNumber = data.currentNumber
   }
   array(n: number): any[] {
     return Array(n);
   }
   ngOnInit(): void {
     this.synth = window.speechSynthesis
-
+    this.breakpoint = (window.innerWidth <= 450) ? 5 : 10;
   }
   ngAfterViewInit() {
     this.numbersCalled.forEach(this.markNumber);
 
+  }
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 450) ? 5 : 10;
   }
   generate() {
     var nextNumber = Math.floor(Math.random() * 90) + 1;
@@ -35,13 +40,12 @@ export class NumberGridComponent implements OnInit {
       while (this.numbersCalled.get(nextNumber) === true && this.numberList.length < 90) {
         nextNumber = Math.floor(Math.random() * 90) + 1;
       }
-      this.markNumber(true,nextNumber,null);
+      this.markNumber(true, nextNumber, null);
       this.numbersCalled.set(nextNumber, true);
-      console.log("called = ", nextNumber);
       this.currentNumber = nextNumber;
       this.numberList.push(nextNumber);
       this.announceNumber(nextNumber.toString());
-      this.data.updateGridData(this.numbersCalled,this.numberList,this.currentNumber);
+      this.data.updateGridData(this.numbersCalled, this.numberList, this.currentNumber);
     }
     else {
       alert("All numbers called!");
@@ -54,10 +58,10 @@ export class NumberGridComponent implements OnInit {
     var utterThis = new SpeechSynthesisUtterance(nextNumber);
     this.synth.speak(utterThis);
   }
-  markNumber(hasOccured:boolean,number: number,_:Map<number,boolean>) {
-    if(hasOccured){
-    var tileId = "tile-" + number;
-    document.getElementById(tileId).classList.add("marked");
+  markNumber(hasOccured: boolean, number: number, _: Map<number, boolean>) {
+    if (hasOccured) {
+      var tileId = "tile-" + number;
+      document.getElementById(tileId).classList.add("marked");
     }
   }
 
@@ -67,6 +71,9 @@ export class NumberGridComponent implements OnInit {
       document.getElementById(tileId).classList.remove("marked");
     }
     this.data.resetGridData();
+    this.currentNumber=0;
+    this.numberList=[];
+    this.numbersCalled=new Map();
   }
-  
+
 }
