@@ -9,9 +9,9 @@
     </div>
 
     <div id="collapseOne{{playerName}}"  class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
+      <div class="card-body  mx-auto" style="max-width:800px;">
        <div *ngFor="let ticket of tickets;let i=index">
-       <div class="container" ><app-ticket (deleteEvent)='deleteTicket(i)' [data]=ticket></app-ticket></div>
+       <div class="container" ><app-ticket  (deleteEvent)='deleteTicket(i)' [data]=ticket></app-ticket></div>
        </div>
       </div>
     </div>

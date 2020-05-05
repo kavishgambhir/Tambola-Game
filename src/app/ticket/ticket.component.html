@@ -3,7 +3,7 @@
   <div class="col-auto mr-auto"><strong>{{data.playerName}} - {{data.ticketId}}</strong> </div>
   <div class="col-auto"><button type="button" class="btn close" (click)="deleteTicket()"><span>×</span> </button></div>
 </div>
-  <div class="row ticket-container" *ngFor="let numArray of data.ticketGrid">
+  <div class="row  justify-content-center" *ngFor="let numArray of data.ticketGrid">
    <div *ngFor="let num of numArray" [ngClass]="{'marked' : dataService.numbersCalled.has(num)==true}" class="col-sm item fixwidth ">
    {{num!=0?num:''}}
    </div>
