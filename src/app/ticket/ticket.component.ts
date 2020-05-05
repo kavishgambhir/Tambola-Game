@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ElementRef, ViewChild, TemplateRef, Output, EventEmitter } from '@angular/core';
 import { Ticket } from '../models/ticket.model';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-ticket',
@@ -11,14 +12,19 @@ export class TicketComponent implements OnInit {
   data: Ticket;
   @Output()
   deleteEvent = new EventEmitter<null>();
-  constructor() {
+  constructor(private dataService:DataService) {
   }
 
   ngOnInit(): void {
-
+    console.log(this.data.numbersMap)
   }
   deleteTicket() {
     this.deleteEvent.emit(null);
   }
-
+  markNumber(hasOccured:boolean,number: number,_:Map<number,boolean>) {
+    if(hasOccured){
+    var tileId = "tile-" + number;
+    document.getElementById(tileId).classList.add("marked");
+    }
+  }
 }

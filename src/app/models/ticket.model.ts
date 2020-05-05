@@ -5,7 +5,7 @@ export class Ticket {
     readonly ticketGrid: Array<Array<number>>;
     readonly numbersPosition: Map<number, []> = new Map();
     readonly playerName: string;
-    constructor(playerName,ticketId) {
+    constructor(playerName:string,ticketId:number) {
         this.ticketId = ticketId;
         this.playerName = playerName;
         this.ticketGrid = [];
@@ -27,11 +27,9 @@ export class Ticket {
           var columnCheck = randomNumber == 90 ? 8 : Math.floor(randomNumber / 10);
           if (columnDoubleCount[columnCheck] == 1) continue;
           this.numbersMap.set(randomNumber, true);
-          // console.log(' 2nd number at column == ', columnCheck);
           columnDoubleCount[columnCheck] = 1;
           x++;
         }
-        // console.log("size--", this.numbersMap.size)
         for (var [m, n] of (this.numbersMap)) {
           this.numberList.push(m)
         }
