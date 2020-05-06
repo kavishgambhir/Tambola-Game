@@ -15,6 +15,7 @@ export class PlayerDashboardComponent implements OnInit {
   }
 
   addPlayer(name: string) {
+    if(name!="")
     this.data.addPlayer(new Player(name));
   }
   deletePlayer(index: number) {

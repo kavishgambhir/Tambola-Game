@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,6 +12,11 @@ export class AppComponent {
   numberGrid: Observable<Map<number,boolean>>;
   constructor(){
 
+
+  }
+  @HostListener('window:beforeunload', ['$event'])
+  beforeunloadHandler(event) {
+      return false;
   }
 
 }
