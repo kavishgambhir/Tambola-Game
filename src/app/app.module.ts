@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TicketComponent } from './ticket/ticket.component';
 import { PlayerDashboardComponent } from './player-dashboard/player-dashboard.component';
 import { PlayerComponent } from './player/player.component';
-import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -16,7 +15,7 @@ import { environment } from '../environments/environment';
     NumberGridComponent,
     TicketComponent,
     PlayerDashboardComponent,
-    PlayerComponent
+    PlayerComponent,
   ],
   imports: [
     BrowserModule,

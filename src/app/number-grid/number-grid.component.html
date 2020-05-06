@@ -3,14 +3,12 @@
 <div class="d-flex button-bar align-middle">
 <button (click)="generate()" type="button" class="mr-3 p-2 btn  btn-primary">Generate</button>
 <button data-toggle="modal" data-target="#listNum" type="button" class="mr-3 p-2 btn  btn-outline-info">Show list</button>
-<div class="ml-auto justify-content-center">
-<button *ngIf="currentNumber!=0" class="btn btn-outline-warning disabled" ><strong>Last Called Number => {{currentNumber}}</strong></button>
-</div>
+
 <button type="button" (click)='reset()' class="btn ml-auto p-2 btn-danger">Reset</button>
 </div>
-<mat-grid-list (window:resize)="onResize($event)" [cols]="breakpoint" rowHeight="2.5:1">
+<mat-grid-list (window:resize)="onResize($event)" [cols]="breakpoint" rowHeight="2:1">
   
-  <mat-grid-tile *ngFor="let item of array(90); index as i;" id="tile-{{i+1}}">{{i+1}}</mat-grid-tile>
+  <mat-grid-tile [ngClass]="{'current' : data.currentNumber==i+1}" *ngFor="let item of array(90); index as i;" id="tile-{{i+1}}">{{i+1}}</mat-grid-tile>
 </mat-grid-list>
 
 

@@ -25,14 +25,14 @@ export class NumberGridComponent implements OnInit {
   }
   ngOnInit(): void {
     this.synth = window.speechSynthesis
-    this.breakpoint = (window.innerWidth <= 450) ? 5 : 10;
+    this.breakpoint = (window.innerWidth <= 450) ? 6 : 10;
   }
   ngAfterViewInit() {
     this.numbersCalled.forEach(this.markNumber);
 
   }
   onResize(event) {
-    this.breakpoint = (event.target.innerWidth <= 450) ? 5 : 10;
+    this.breakpoint = (event.target.innerWidth <= 450) ? 6 : 10;
   }
   generate() {
     var nextNumber = Math.floor(Math.random() * 90) + 1;
@@ -71,9 +71,9 @@ export class NumberGridComponent implements OnInit {
       document.getElementById(tileId).classList.remove("marked");
     }
     this.data.resetGridData();
-    this.currentNumber=0;
-    this.numberList=[];
-    this.numbersCalled=new Map();
+    this.currentNumber = 0;
+    this.numberList = [];
+    this.numbersCalled = new Map();
   }
 
 }

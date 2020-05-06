@@ -1,6 +1,6 @@
 export class Ticket {
     readonly ticketId: number
-    readonly numbersMap: Map<number, boolean> = new Map();
+    readonly numbersMap: Map<number, boolean> = new Map(); // used to create ticket
     readonly numberList: Array<number> = [];
     readonly ticketGrid: Array<Array<number>>;
     readonly numbersPosition: Map<number, []> = new Map();

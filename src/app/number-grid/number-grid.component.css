@@ -1,13 +1,19 @@
 mat-grid-tile {
     background: lightblue;
   }
-
+mat-grid-list {
+    margin-bottom: 100px;
+    font-weight: bold;
+}
 .marked{
-    background: blue;
+    background: rgb(96, 244, 140);
 }
 
 .button-bar{
     margin-bottom: 2rem;
     margin-top: 1.5rem;
     text-align: center;
+}
+.current{
+    background: rgba(72, 132, 211, 0.733);
 }
