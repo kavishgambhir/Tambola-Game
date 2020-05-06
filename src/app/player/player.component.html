@@ -1,14 +1,15 @@
     <div class="card-header  d-flex justify-content-between">
-      <h2 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target] ="'#collapseOne'+playerName" aria-expanded="true" aria-controls="collapseOne">
+      <h2 class="mb-0 ">
+        <button class="btn btn-outline-secondary " type="button" data-toggle="collapse" [attr.data-target] ="'#collapseOne'+playerName" aria-expanded="true" aria-controls="collapseOne">
           {{playerName}}
         </button>
+        <span class="small"> &nbsp; tickets: {{tickets.length}}</span>
       </h2>
       <button type="button" class="btn btn-outline-primary btn-sm" (click)="createTicket()">Add ticket</button>
       <button type="button" class="btn btn-outline-danger btn-sm" (click)="deletePlayer()">delete</button>
     </div>
 
-    <div id="collapseOne{{playerName}}"  class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+    <div id="collapseOne{{playerName}}"  class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body  mx-auto" style="max-width:800px;">
        <div *ngFor="let ticket of tickets;let i=index">
        <div class="container" ><app-ticket  (deleteEvent)='deleteTicket(i)' [data]=ticket></app-ticket></div>
